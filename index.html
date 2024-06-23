@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Additional CSS must be placed after Bootstrap CSS -->
+    <link href="/node_modules/@fortawesome/fontawesome-free/css/fontawesome.css" rel="stylesheet">
+    <link href="/node_modules/@fortawesome/fontawesome-free/css/brands.css" rel="stylesheet">
+    <link href="/node_modules/@fortawesome/fontawesome-free/css/solid.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Open+Sans" />
+    <link rel="stylesheet" href="css/styles.scss" />
+    <title>Nucamp: A Better Way To Camp</title>
+</head>
+
+<body>
+
+    <!-- header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-sm-3 col-md-2 align-self-center">
+                    <img src="img/logo.png" class="img-fluid" />
+                </div>
+                <div class="col">
+                    <h1>Nucamp</h1>
+                    <h2>a better way to camp</h2>
+                </div>
+                <div class="col-md-4 col-xl-2 mt-4">
+                    <button class="btn btn-info btn-lg text-white text-nowrap" data-bs-toggle="modal"
+                        data-bs-target="#reserveModal">
+                        Reserve Campsite
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="img/logo.png" height="30" width="30" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nucampNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nucampNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="#"><i class="fa-solid fa-house fa-lg"></i>
+                            Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.html"><i class="fa-solid fa-info fa-lg"></i>
+                            About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-list fa-lg"></i> Sites</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contactus.html"><i
+                                class="fa-solid fa-address-card fa-lg"></i> Contact</a></li>
+                </ul>
+                <span class="navbar-text ms-auto">
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="fa-solid fa-right-to-bracket"></i> Login
+                    </a>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- login modal -->
+    <div class="modal fade" id="loginModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Login</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form>
+                            <div class="row">
+                                <div class="mb-3 col-12">
+                                    <label class="sr-only" for="loginEmail">Email address</label>
+                                    <input type="email" class="form-control form-control-sm" id="loginEmail"
+                                        placeholder="Enter email">
+                                </div>
+                                <div class="mb-3 col-12">
+                                    <label class="sr-only" for="loginPassword">Password</label>
+                                    <input type="password" class="form-control form-control-sm" id="loginPassword"
+                                        placeholder="Password">
+                                </div>
+                                <div class="col">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox">
+                                        <label class="form-check-label"> Remember me</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- reservation form modal -->
+    <div class="modal fade" id="reserveModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reserve a Campsite</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form id="reserveForm" action="https://us-central1-nucamp-production.cloudfunctions.net/post/formdata" method="post">
+                            <div class="row mb-3">
+                                <label for="numCampers" class="col-sm-6 col-form-label">Number of Campers</label>
+                                <div class="col">
+                                    <select name="numCampers" id="numCampers" class="form-control">
+                                        <option>Select...</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="date" class="col-sm-6 col-form-label">Date</label>
+                                <div class="col">
+                                    <input type="date" id="date" name="date" placeholder="mm/dd/yyyy"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <button class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- main content -->
+    <main class="container">
+
+        <!-- carousel -->
+        <section class="row row-content">
+            <div class="col-md-8 mx-auto">
+                <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="img/breadcrumb-trail.jpg" alt="Breadcrumb Trail Campground" />
+                            <div class="carousel-caption">
+                                <h3>Breadcrumb Trail Campground</h3>
+                                <p class="d-none d-sm-block">Let Nucamp be your guide to this off-the-beaten-path, hike-in-only campground.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="img/react-lake.jpg" alt="React Lake Campground" />
+                            <div class="carousel-caption">
+                                <h3>React Lake Campground</h3>
+                                <p class="d-none d-sm-block">Nestled in the foothills of the Chrome Mountains, this campground on the shores of the pristine React Lake is a favorite for fly fishers.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="img/chrome-river.jpg" alt="Chrome River Campground" />
+                            <div class="carousel-caption">
+                                <h3>Chrome River Campground</h3>
+                                <p class="d-none d-sm-block">Spend a few sunny days and starry nights beneath a canopy of old-growth firs at this enchanting spot by the Chrome River.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#homeCarousel" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#homeCarousel" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- discover section -->
+        <section class="row row-content align-items-center">
+            <div class="col-sm-4 col-md-3 order-sm-last">
+                <h2 class="text-sm-end">Discover & Review</h2>
+            </div>
+            <div class="col">
+                <div class="d-flex">
+                    <img class="me-3 img-thumbnail" src="img/breadcrumb-trail-thumb.jpg" alt="Breadcrumb Trail" />
+                    <div class="align-self-center">
+                        <h3>Our Campsites</h3>
+                        <p class="d-none d-sm-block">Explore our growing database of curated campsites and leave your
+                            own reviews!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- feature section -->
+        <section class="row row-content align-items-center">
+            <div class="col-sm-4 col-md-3">
+                <h2>Featured Campsites</h2>
+            </div>
+            <div class="col">
+                <div class="d-flex">
+                    <div class="align-self-center">
+                        <h3>React Lake Campground</h3>
+                        <p class="d-none d-sm-block">Nestled in the foothills of the Chrome Mountains, this campground
+                            on the shores of the pristine React Lake is a favorite for fly fishers.</p>
+                    </div>
+                    <img class="ms-3 img-thumbnail" src="img/react-lake-thumb.jpg" alt="React Lake" />
+                </div>
+            </div>
+        </section>
+
+        <!-- partner section -->
+        <section class="row row-content align-items-center">
+            <div class="col-sm-4 col-md-3 order-sm-last">
+                <h2 class="text-sm-end">Our Community Partners</h2>
+            </div>
+            <div class="col">
+                <div class="d-flex">
+                    <img class="me-3 img-thumbnail" src="img/bootstrap-thumb.png" alt="Bootstrap Outfitters" />
+                    <div class="align-self-center">
+                        <h3>Bootstrap Outfitters</h3>
+                        <p class="d-none d-sm-block">Bootstrap Outfitters supplies you with gear you need at prices you
+                            can't beat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="row row-content align-items-start review-section mb-3">
+            <div class="col-sm-4 col-md-3 order-sm-first">
+                <h2 class="text-sm-end">What Are Happy Campers Saying?</h2>
+            </div>
+            <div class="col ms-lg-5">
+                <img class="img-thumbnail img-fluid" src="img/happy-campers.jpg" alt="picture of two happy campers">
+            </div>
+            <div class="col">
+                <h3>So Worth It!</h3>
+                <p>"We had a blast as we embarked on a wild adventure amidst nature's embrace, where s'mores and laughter under starlit skies became our daily ritual, creating memories that will last us forever."</p>
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <button class="campsite-btn" data-bs-toggle="modal" data-bs-target="#reserveModal">Reserve Campsite</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-sm-2 offset-1">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Sites</a></li>
+                        <li><a href="contactus.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-sm-5 text-center">
+                    <h5>Social</h5>
+                    <a href="http://instagram.com/"><i class="fa-brands fa-instagram fa-xl"></i></a>
+                    <a href="http://facebook.com/"><i class="fa-brands fa-facebook fa-xl"></i></a>
+                    <a href="http://twitter.com/"><i class="fa-brands fa-twitter fa-xl"></i></a>
+                    <a href="http://youtube.com/"><i class="fa-brands fa-youtube fa-xl"></i></a>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <i class="fa-solid fa-phone fa-lg text-primary"></i> 1-206-555-1234<br />
+                    <i class="fa-solid fa-envelope fa-lg text-primary"></i> campsites@nucamp.co
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript plugins -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+</body>
+
+</html>

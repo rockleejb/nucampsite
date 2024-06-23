@@ -1,0 +1,29 @@
+{
+  "name": "nucampsite",
+  "version": "1.0.0",
+  "description": "This is a website for a fictional campsites review website.",
+  "source": "index.html",
+  "scripts": {
+    "start": "parcel --open",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nucamp/webfun-nucampsite-cdn.git"
+  },
+  "keywords": [],
+  "author": "Jay Balangue",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nucamp/webfun-nucampsite-cdn/issues"
+  },
+  "homepage": "https://github.com/nucamp/webfun-nucampsite-cdn#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "parcel": "^2.9.3"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.1",
+    "bootstrap": "^5.2.3"
+  }
+}

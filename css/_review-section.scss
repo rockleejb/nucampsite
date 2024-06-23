@@ -1,0 +1,29 @@
+
+// Mixins allow you to create a function-like CSS to add multiple rulesets to one class. You can also extend from them to add variations for specific custom classes.
+@mixin review-section() {
+    background: beige;
+    // Add more CSS rules here if you'd like
+}
+
+.review-section {
+    // Add the review-section mixin
+    @include review-section;
+    // Add more CSS rules here if you'd like
+}
+
+// This is similar to a mixin but is more useful when creating custom CSS button components
+%campsite-btn {
+    background: #0dcaf0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    width: 60%;
+}
+
+// We can extend from the %campsite-btn
+.campsite-btn {
+    @extend %campsite-btn;
+    // Add more CSS rules here if you'd like
+}
