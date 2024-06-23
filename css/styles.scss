@@ -56,5 +56,12 @@ footer {
     border: solid $color-secondary;
 }
 
+#carouselButton {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
 @import 'modal';
 @import 'review-section';
