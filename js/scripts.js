@@ -67,9 +67,13 @@ async function fetchCityFromIp() {
     try {
         const ip = await fetchIp();
         const ipstackApiKey = process.env.IPSTACK_API_ACCESS_KEY;
-        const url = `http://api.ipstack.com/${ip}?access_key=${ipstackApiKey}`;
-        const response = await fetch(url);
+        const options = {
+            method: "GET",
+        };
+        const url = `https://api.ipstack.com/${ip}?access_key=${ipstackApiKey}`;
+        const response = await fetch(url, options);
         const data = await response.json();
+        console.log(data);
         return data.city;
     } catch (error) {
         console.error(error);
