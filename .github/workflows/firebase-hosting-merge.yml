@@ -15,6 +15,6 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_JAFB_NUCAMPSITE_202407020322 }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_JAFB_NUCAMPSITE_202407020357 }}'
           channelId: live
-          projectId: jafb-nucampsite-202407020322
+          projectId: jafb-nucampsite-202407020357
