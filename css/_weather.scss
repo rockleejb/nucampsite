@@ -1,0 +1,23 @@
+#weather {
+    display: flex;
+    align-items: center;
+    color: #fff;
+
+    #weather-icon {
+        font-size: 1rem;
+    }
+
+    #weather-temp,
+    #weather-description,
+    #weather-city {
+        margin-right: 10px;
+    }
+
+    #weather-description {
+        text-transform: capitalize;
+    }
+}
+
+#weather:hover {
+    opacity: 0.8;
+}
