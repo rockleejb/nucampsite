@@ -23,30 +23,57 @@ carouselButton.addEventListener('click', function () {
 async function fetchWeather() {
     try {
         const apiKey = process.env.OPEN_WEATHER_API_KEY;
-        const city = "San Diego";
+        const city = await fetchCityFromIp();
+        if (!city) throw new Error("Cannot determine city");
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
         const response = await fetch(url);
         const data = await response.json();
-        displayWeather(data);
+        await displayWeather(data);
     } catch (error) {
         console.error(error);
     }
 }
 
 async function displayWeather(data) {
-    // console.log(data);
-    const imageElement = document.createElement("img");
-    const iconId = data.weather[0].icon;
-    imageElement.src = `https://openweathermap.org/img/w/${iconId}.png`;
-    document.querySelector("#weather-icon").appendChild(imageElement);
-    const tempElement = document.createTextNode(data.main.temp + "\u00B0");
-    document.querySelector("#weather-temp").appendChild(tempElement);
-    const description = data.weather[0].description;
-    const descriptionElement = document.createTextNode(description);
-    document.querySelector("#weather-description").appendChild(descriptionElement);
-    const city = data.name;
-    const cityElement = document.createTextNode(city);
-    document.querySelector("#weather-city").appendChild(cityElement);
+    try {
+        const imageElement = document.createElement("img");
+        const iconId = data.weather[0].icon;
+        imageElement.src = `https://openweathermap.org/img/w/${iconId}.png`;
+        document.querySelector("#weather-icon").appendChild(imageElement);
+        const tempNode = document.createTextNode(data.main.temp + "\u00B0");
+        document.querySelector("#weather-temp").appendChild(tempNode);
+        const description = data.weather[0].description;
+        const descriptionNode = document.createTextNode(description);
+        document.querySelector("#weather-description").appendChild(descriptionNode);
+        const city = data.name;
+        const cityNode = document.createTextNode(city);
+        document.querySelector("#weather-city").appendChild(cityNode);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function fetchIp() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function fetchCityFromIp() {
+    try {
+        const ip = await fetchIp();
+        const ipstackApiKey = process.env.IPSTACK_API_ACCESS_KEY;
+        const url = `http://api.ipstack.com/${ip}?access_key=${ipstackApiKey}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.city;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 fetchWeather();
