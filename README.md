@@ -1,3 +1,3 @@
 # nucampsite
 
-Deployed to firebase temporarily: https://jafb-nucampsite-202407020426.web.app/
+JavaScript class project for NuCamp coding bootcamp.
